@@ -1,19 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./pages/app/App";
+import { BrowserRouter } from "react-router-dom";
+import { FirebaseAppProvider } from "reactfire";
+import { Provider } from "react-redux";
+import firebaseApp from "./firebase/firebaseApp";
+import { store } from "./store";
+import { UIContextProvider } from "./UI/UIContext";
+import { ThemeProvider } from "@mui/material";
+import customTheme from "./UI/CustomTheme";
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <FirebaseAppProvider firebaseApp={firebaseApp}>
+        <Provider store={store}>
+          <ThemeProvider theme={customTheme}>
+            <UIContextProvider>
+              <App />
+            </UIContextProvider>
+          </ThemeProvider>
+        </Provider>
+      </FirebaseAppProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
