@@ -9,20 +9,17 @@ import RequireAuth from "../../components/Auth/RequireAuth";
 import Character from "../../components/Character";
 import "../../styles/App.scss";
 import LikedPage from "../LikedPage";
+import WelcomePage from "../WelcomePage";
+import AllCharactersPage from "../AllCharactersPage";
 
 function App() {
   return (
     <Routes>
       <Route path={RouteNames.LOGIN} element={<LoginPage />} />
       <Route path={RouteNames.REGISTRATION} element={<RegisterPage />} />
-      <Route
-        path={RouteNames.HOME_PAGE}
-        element={
-          <RequireAuth>
-            <HomePage />
-          </RequireAuth>
-        }
-      >
+      <Route path={RouteNames.HOME_PAGE} element={<RequireAuth><HomePage /></RequireAuth>}>
+        <Route index element={<WelcomePage />} />
+        <Route path={RouteNames.ALL_CHARACTERS} element={<AllCharactersPage />} />
         <Route path={RouteNames.LIKED} element={<LikedPage />} />
         <Route path={RouteNames.CHARACTER} element={<Character />} />
       </Route>
