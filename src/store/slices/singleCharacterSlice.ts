@@ -2,7 +2,7 @@ import { singleCharacterTypes } from "../../types/slicesTypes";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: singleCharacterTypes = {
-  user: {
+  character: {
     name: "",
     id: null,
     image: "",
@@ -18,11 +18,11 @@ export const singleCharacterSlice = createSlice({
   name: "singleCharacterSlice",
   initialState,
   reducers: {
-    setSingleUser: (state, action) => {
-      state.user = action.payload;
+    setSingleCharacter: (state, action) => {
+      state.character = action.payload;
     },
   },
 });
 
-export const { setSingleUser } = singleCharacterSlice.actions;
+export const { setSingleCharacter } = singleCharacterSlice.actions;
 export default singleCharacterSlice.reducer;

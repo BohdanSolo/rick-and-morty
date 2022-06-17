@@ -19,7 +19,7 @@ export interface charactersProps {
 }
 
 export interface singleCharacterTypes {
-  user: {
+  character: {
     name: string,
     id: number | null,
     image: string,
