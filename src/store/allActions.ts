@@ -1,4 +1,5 @@
 import {setCurrentUser, removeUser} from "./slices/currentUserSlice";
-import {setCharactersAsyncThunk} from "./asyncThunks/setCharactersAsyncThunk"
+import {allCharactersAsyncThunk} from "./asyncThunks/allCharactersAsyncThunk"
+import {singleCharacterAsyncThunk} from "./asyncThunks/singleCharacterAsyncThunk"
 
-export const allActions = {setCurrentUser, removeUser, setCharactersAsyncThunk};
+export const allActions = {setCurrentUser, removeUser, singleCharacterAsyncThunk, allCharactersAsyncThunk};
