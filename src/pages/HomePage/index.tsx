@@ -66,7 +66,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Box flexGrow={1}>
-      <AppBar position="static" color="primary">
+      <AppBar position="static" color="primary" sx={{marginBottom: "50px"}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1 }}>

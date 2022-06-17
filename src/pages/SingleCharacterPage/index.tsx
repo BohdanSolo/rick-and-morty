@@ -56,10 +56,10 @@ const SingleCharacterPage = () => {
       <Container maxWidth="lg">
         <Grid
           container
-          marginTop="50px"
           display="flex"
           justifyContent="space-around"
           alignItems="center"
+          marginBottom="30px"
         >
           <Grid>
             <CustomCard

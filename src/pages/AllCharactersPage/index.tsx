@@ -22,7 +22,7 @@ const AllCharactersPage = () => {
             display: "flex",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            margin: "50px auto 20px",
+            margin: "0 auto 20px",
           }}
         >
           {allCharacters?.map(({ name, id, image, status }) => (
