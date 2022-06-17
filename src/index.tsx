@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <FirebaseAppProvider firebaseApp={firebaseApp}>
+    <FirebaseAppProvider firebaseApp={firebaseApp}>
+      <BrowserRouter>
         <Provider store={store}>
           <ThemeProvider theme={customTheme}>
             <UIContextProvider>
@@ -24,7 +24,7 @@ root.render(
             </UIContextProvider>
           </ThemeProvider>
         </Provider>
-      </FirebaseAppProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </FirebaseAppProvider>
   </React.StrictMode>
 );

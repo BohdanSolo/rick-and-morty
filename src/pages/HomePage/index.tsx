@@ -55,7 +55,6 @@ const HomePage: React.FC = () => {
   ];
 
   const location = useLocation();
-  console.log(location);
 
   const typographyStyles = {
     color: "white",
@@ -78,7 +77,7 @@ const HomePage: React.FC = () => {
               />
             </Box>
             {menuItems.map((item) => (
-              <MenuItem>
+              <MenuItem key={item.text}>
                 <Link to={item.link} style={{ textDecoration: "none" }}>
                   <Typography variant="h6" sx={{...typographyStyles, borderBottom: location.pathname === item.link ? "3px solid white" : 'none',}}>
                     {item.text}
@@ -94,7 +93,7 @@ const HomePage: React.FC = () => {
               onClick={handleAvatarMenu}
               color="inherit"
             >
-              <Avatar alt={name} src={img} sx={{ padding: "5px" }}>
+              <Avatar alt={name || 'User'} src={img || ""} sx={{ padding: "5px" }}>
                 {getInitials(name)}
               </Avatar>
             </IconButton>

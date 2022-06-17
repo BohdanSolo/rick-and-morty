@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { currentUserSliceTypes } from "../../types/slicesTypes";
 
-const initialState: currentUserSliceTypes = {
-  name: "",
-  email: "",
-  img: "",
-};
+
+const initialState: currentUserSliceTypes =  {
+      name: "",
+      email: "",
+      img: "",
+    };
 
 const currentUserSlice = createSlice({
   name: "currentUserSlice ",

@@ -4,7 +4,7 @@ export enum RouteNames {
   NOT_FOUND = "/notfound",
   HOME_PAGE = "/",
   ALL_CHARACTERS = "/characters",
-  CHARACTER = "/character",
+  CHARACTER = "characters/:id",
   SEARCH = "/search",
   LIKED = "/liked",
 }

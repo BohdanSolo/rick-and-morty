@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import currentUser from "./slices/currentUserSlice";
-import setCharactersSlice from "./slices/setCharactersSlice"
-
+import allCharactersSlice from "./slices/allCharactersSlice";
+import singleCharacterSlice from "./slices/singleCharacterSlice";
 
 export const rootReducer = combineReducers({
-    currentUser,
-    characters: setCharactersSlice,
+  currentUser,
+  allCharacters: allCharactersSlice,
+  singleCharacter: singleCharacterSlice,
 });
 
 export const store = configureStore({ reducer: rootReducer });

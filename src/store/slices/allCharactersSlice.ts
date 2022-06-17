@@ -6,27 +6,27 @@ const initialState: setCharactersSliceTypes = {
     {
       name: "",
       image: "",
+      status: "",
       id: null,
     },
   ],
-  links: {
-    prev: null,
-    next: null,
+  info: {
+    pages: 0
   },
 };
 
-const setCharactersSlice = createSlice({
+const allCharactersSlice = createSlice({
   name: "setCharactersSlice",
   initialState,
   reducers: {
     setCharacters: (state, action) => {
       state.characters = action.payload;
     },
-    setLinks: (state, action) => {
-      state.links = action.payload;
+    setInfo: (state, action) => {
+      state.info = action.payload;
     },
   },
 });
 
-export const { setCharacters, setLinks } = setCharactersSlice.actions;
-export default setCharactersSlice.reducer;
+export const { setCharacters, setInfo } = allCharactersSlice.actions;
+export default allCharactersSlice.reducer;

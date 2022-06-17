@@ -1,19 +1,32 @@
 export interface currentUserSliceTypes {
-  name: string | undefined;
-  email: string | undefined;
-  img?: string | undefined;
+  name: string | undefined | null;
+  email: string | undefined | null;
+  img?: string | undefined | null;
 }
 
 export interface setCharactersSliceTypes {
   characters: charactersProps[];
-  links: {
-    prev: string | null;
-    next: string | null;
+  info: {
+    pages: number;
   };
 }
 
-interface charactersProps {
+export interface charactersProps {
   name: string;
   image: string;
+  status: string;
   id: number | null;
+}
+
+export interface singleCharacterTypes {
+  user: {
+    name: string,
+    id: number | null,
+    image: string,
+    status: string,
+    gender: string,
+    location: string
+    episode: string[],
+    created: string,
+  }
 }
