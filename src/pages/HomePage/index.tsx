@@ -15,7 +15,7 @@ import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useActions } from "../../hooks/useActions";
 import clearFirestoreCache from "../../utils/clearFirestoreCache";
 import Container from "@mui/material/Container";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { RouteNames } from "../../types/routes";
 
 const HomePage: React.FC = () => {
@@ -47,7 +47,15 @@ const HomePage: React.FC = () => {
     return null;
   };
 
-  const menuItems = [{ text: "search", link: RouteNames.SEARCH }, { text: "liked", link: RouteNames.LIKED }];
+  const menuItems = [
+    { text: "home", link: RouteNames.HOME_PAGE },
+    { text: "all characters", link: RouteNames.ALL_CHARACTERS },
+    { text: "search", link: RouteNames.SEARCH },
+    { text: "liked", link: RouteNames.LIKED },
+  ];
+
+  const location = useLocation();
+  console.log(location);
 
   const typographyStyles = {
     color: "white",
@@ -69,48 +77,48 @@ const HomePage: React.FC = () => {
                 style={{ width: "300px", height: "70px", flexGrow: 1 }}
               />
             </Box>
-            {menuItems.map(item => (
-                <MenuItem>
-                  <Link to={item.link} style={{ textDecoration: "none" }}>
-                    <Typography variant="h6" sx={typographyStyles}>
-                      {item.text}
-                    </Typography>
-                  </Link>
-                </MenuItem>
+            {menuItems.map((item) => (
+              <MenuItem>
+                <Link to={item.link} style={{ textDecoration: "none" }}>
+                  <Typography variant="h6" sx={{...typographyStyles, borderBottom: location.pathname === item.link ? "3px solid white" : 'none',}}>
+                    {item.text}
+                  </Typography>
+                </Link>
+              </MenuItem>
             ))}
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleAvatarMenu}
-                color="inherit"
-              >
-                <Avatar alt={name} src={img} sx={{padding: "5px"}}>
-                  {getInitials(name)}
-                </Avatar>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleAvatarMenuClose}
-              >
-                <MenuItem onClick={logOut}>Logout</MenuItem>
-              </Menu>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleAvatarMenu}
+              color="inherit"
+            >
+              <Avatar alt={name} src={img} sx={{ padding: "5px" }}>
+                {getInitials(name)}
+              </Avatar>
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleAvatarMenuClose}
+            >
+              <MenuItem onClick={logOut}>Logout</MenuItem>
+            </Menu>
           </Toolbar>
         </Container>
       </AppBar>
-      <Outlet/>
+      <Outlet />
     </Box>
   );
 };

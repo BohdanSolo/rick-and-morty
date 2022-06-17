@@ -3,7 +3,7 @@ export enum RouteNames {
   LOGIN = "/login",
   NOT_FOUND = "/notfound",
   HOME_PAGE = "/",
-  ALL_CHARACTERS = "characters",
+  ALL_CHARACTERS = "/characters",
   CHARACTER = "/character",
   SEARCH = "/search",
   LIKED = "/liked",

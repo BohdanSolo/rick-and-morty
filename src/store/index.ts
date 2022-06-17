@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import currentUser from "./slices/currentUserSlice"
+import currentUser from "./slices/currentUserSlice";
+import setCharactersSlice from "./slices/setCharactersSlice"
 
 
 export const rootReducer = combineReducers({
-    currentUser
+    currentUser,
+    characters: setCharactersSlice,
 });
 
 export const store = configureStore({ reducer: rootReducer });

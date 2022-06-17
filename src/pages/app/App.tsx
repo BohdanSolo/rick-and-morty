@@ -11,6 +11,7 @@ import "../../styles/App.scss";
 import LikedPage from "../LikedPage";
 import WelcomePage from "../WelcomePage";
 import AllCharactersPage from "../AllCharactersPage";
+import SearchPage from "../SearchPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path={RouteNames.HOME_PAGE} element={<RequireAuth><HomePage /></RequireAuth>}>
         <Route index element={<WelcomePage />} />
         <Route path={RouteNames.ALL_CHARACTERS} element={<AllCharactersPage />} />
+        <Route path={RouteNames.SEARCH} element={<SearchPage />} />
         <Route path={RouteNames.LIKED} element={<LikedPage />} />
         <Route path={RouteNames.CHARACTER} element={<Character />} />
       </Route>
