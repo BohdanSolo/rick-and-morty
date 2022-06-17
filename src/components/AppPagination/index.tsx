@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Pagination, PaginationItem, Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { useActions } from "../../hooks/useActions";
-import { ALL_CHARACTERS_URL } from "../../api/charactersAPI";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/reduxHooks";
 
-const AppPagination = () => {
-  const location = useLocation();
-  const [pageNumber, setPageNumber] = useState<number>(
-    parseInt(location.search?.split("=")[1]) || 1
-  );
-  const { allCharactersAsyncThunk } = useActions();
+interface AppPaginationProps {
+  pageNumber: number,
+  setPageNumber: (pageNumber: number) => void
+  setSearchInputValue: (searchQuery: string) => void
+}
+
+const AppPagination: React.FC<AppPaginationProps> = ({pageNumber, setPageNumber, setSearchInputValue }) => {
   const pagesCount = useAppSelector((state) => state.allCharacters.info.pages);
-
-
-
-  useEffect(() => {
-    allCharactersAsyncThunk(`${ALL_CHARACTERS_URL}/?page=${pageNumber}`);
-  }, [pageNumber]);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPageNumber(value);
+    setSearchInputValue(''); // Clear search input when user is clicking on pagination number
   };
 
 

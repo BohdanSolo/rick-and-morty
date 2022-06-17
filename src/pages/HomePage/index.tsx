@@ -50,7 +50,6 @@ const HomePage: React.FC = () => {
   const menuItems = [
     { text: "home", link: RouteNames.HOME_PAGE },
     { text: "all characters", link: RouteNames.ALL_CHARACTERS },
-    { text: "search", link: RouteNames.SEARCH },
     { text: "liked", link: RouteNames.LIKED },
   ];
 

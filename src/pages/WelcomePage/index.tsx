@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Typography, Box} from "@mui/material";
+import {useActions} from "../../hooks/useActions";
+import {ALL_CHARACTERS_URL} from "../../api/charactersAPI";
 
 const WelcomePage = () => {
+    const {infoApiAsyncThunk} = useActions()
+
+    useEffect(() => {
+        infoApiAsyncThunk(`${ALL_CHARACTERS_URL}/?page=${1}`);
+    }, [])
+
     return (
         <Box sx={{height: window.innerHeight - 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Typography variant="h2" component="div" color="secondary" fontWeight="bold" textAlign="center">
