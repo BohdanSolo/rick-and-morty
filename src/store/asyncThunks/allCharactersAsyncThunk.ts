@@ -20,10 +20,6 @@ export const allCharactersAsyncThunk = createAsyncThunk(
         };
       });
       dispatch(setCharacters(charactersList));
-      const info = {
-       pages: data.info.pages
-      };
-      dispatch(setInfo(info));
     } catch (e) {
       if (e instanceof Error) {
         const { setAlert } = useContext(UIContext);
@@ -35,4 +31,28 @@ export const allCharactersAsyncThunk = createAsyncThunk(
       }
     }
   }
+);
+
+
+export const infoApiAsyncThunk = createAsyncThunk(
+    "infoApi/AsyncThunk",
+    async (url: string, { dispatch }) => {
+      try {
+        const res = await axios.get(url);
+        const data = res.data;
+        const info = {
+          pages: data.info.pages
+        };
+        dispatch(setInfo(info));
+      } catch (e) {
+        if (e instanceof Error) {
+          const { setAlert } = useContext(UIContext);
+          setAlert({
+            show: true,
+            severity: "error",
+            message: e.message,
+          });
+        }
+      }
+    }
 );

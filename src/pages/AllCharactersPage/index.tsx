@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import AppPagination from "../../components/AppPagination";
 import { Link } from "react-router-dom";
@@ -7,11 +7,19 @@ import {
   Grid,
 } from "@mui/material";
 import CustomCard from "../../UI/CustomCard";
+import {useActions} from "../../hooks/useActions";
+import {ALL_CHARACTERS_URL} from "../../api/charactersAPI";
 
 const AllCharactersPage = () => {
   const allCharacters = useAppSelector(
     (state) => state.allCharacters.characters
   );
+
+  const {infoApiAsyncThunk} = useActions()
+
+  useEffect(() => {
+      infoApiAsyncThunk(`${ALL_CHARACTERS_URL}/?page=${1}`);
+  }, [])
 
   return (
     <Container maxWidth="xl">

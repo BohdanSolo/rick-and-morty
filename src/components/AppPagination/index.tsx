@@ -14,6 +14,8 @@ const AppPagination = () => {
   const { allCharactersAsyncThunk } = useActions();
   const pagesCount = useAppSelector((state) => state.allCharacters.info.pages);
 
+
+
   useEffect(() => {
     allCharactersAsyncThunk(`${ALL_CHARACTERS_URL}/?page=${pageNumber}`);
   }, [pageNumber]);
@@ -21,6 +23,7 @@ const AppPagination = () => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPageNumber(value);
   };
+
 
   return (
     <Grid
