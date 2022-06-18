@@ -19,14 +19,21 @@ export interface charactersProps {
 }
 
 export interface singleCharacterTypes {
-  character: {
-    name: string,
-    id: number | null,
-    image: string,
-    status: string,
-    gender: string,
-    location: string
-    episode: string[],
-    created: string,
-  }
+  character: CharacterTypes;
+}
+
+export interface CharacterTypes {
+  name: string;
+  id: number | null;
+  image: string;
+  status: string;
+  gender: string;
+  location: string;
+  episode: string[];
+  created: string;
+}
+
+
+export interface FavoriteTypes {
+  favoriteCharacters: charactersProps[];
 }
