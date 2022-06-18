@@ -46,4 +46,4 @@ const AppPagination: React.FC<AppPaginationProps> = ({pageNumber, setPageNumber,
   );
 };
 
-export default AppPagination;
+export default React.memo(AppPagination);
