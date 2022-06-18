@@ -1,55 +1,43 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState} from "react";
 import {useAppSelector} from "../../hooks/reduxHooks";
 import AppPagination from "../../components/AppPagination";
 import {Link, useLocation} from "react-router-dom";
-import {
-    Container,
-    Grid, InputAdornment, TextField,
-} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import CustomCard from "../../UI/CustomCard";
 import {useActions} from "../../hooks/useActions";
 import {ALL_CHARACTERS_URL} from "../../api/charactersAPI";
-import SearchIcon from "@mui/icons-material/Search";
 import useDebounce from "../../hooks/useDebounce";
+import InputSearch from "../../components/InputSearch";
 
 const AllCharactersPage = () => {
     const location = useLocation();
-    const [pageNumber, setPageNumber] = useState<number>(parseInt(location.search?.split("=")[1])||1);
+    const [pageNumber, setPageNumber] = useState<number>(parseInt(location.search?.split("=")[1]) || 1);
     const [searchInputValue, setSearchInputValue] = useState<string>("");
     const allCharacters = useAppSelector((state) => state.allCharacters.characters);
-    const isNotFound = useAppSelector((state) => state.allCharacters.info.notFoundError);
-    const {allCharactersAsyncThunk} = useActions()
+    const {allCharactersAsyncThunk} = useActions();
     const debouncedCallback = useDebounce(allCharactersAsyncThunk, 300);
 
     useEffect(() => {
-        debouncedCallback(`${ALL_CHARACTERS_URL}/?page=${pageNumber}&name=${searchInputValue}`);
+        debouncedCallback(
+            `${ALL_CHARACTERS_URL}/?page=${pageNumber}&name=${searchInputValue}`
+        );
     }, [pageNumber, searchInputValue]);
 
-
-    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-            setSearchInputValue(e.target.value);
-    },[]);
-
+    const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchInputValue(e.target.value);
+        setPageNumber(1)
+    };
 
     return (
         <Container maxWidth="xl">
-            <Grid container sx={{display: "flex", justifyContent: "center", marginBottom: "50px"}}>
+            <Grid
+                container
+                sx={{display: "flex", justifyContent: "center", marginBottom: "50px"}}
+            >
                 <Grid item xs={6}>
-                    <TextField
-                        onChange={handleInputChange}
-                        value={searchInputValue}
-                        variant="outlined"
-                        label="Search character by name"
-                        fullWidth
-                        error={isNotFound}
-                        helperText={isNotFound ? 'Not found, last result is displayed' : ''}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <SearchIcon/>
-                                </InputAdornment>
-                            ),
-                        }}
+                    <InputSearch
+                        handleInputChange={handleSearchQuery}
+                        searchInputValue={searchInputValue}
                     />
                 </Grid>
             </Grid>
@@ -65,8 +53,14 @@ const AllCharactersPage = () => {
                         }}
                     >
                         {allCharacters?.map(({name, id, image, status}) => (
-                            <li key={id} style={{paddingBottom: "30px", marginRight: "70px"}}>
-                                <Link to={`/characters/${id}`} style={{textDecoration: "none"}}>
+                            <li
+                                key={id}
+                                style={{paddingBottom: "30px", marginRight: "70px"}}
+                            >
+                                <Link
+                                    to={`/characters/${id}`}
+                                    style={{textDecoration: "none"}}
+                                >
                                     <CustomCard
                                         name={name}
                                         image={image}
@@ -79,7 +73,11 @@ const AllCharactersPage = () => {
                     </Grid>
                 </ul>
 
-                <AppPagination pageNumber={pageNumber} setPageNumber={setPageNumber} setSearchInputValue={setSearchInputValue}/>
+                <AppPagination
+                    pageNumber={pageNumber}
+                    setPageNumber={setPageNumber}
+                    setSearchInputValue={setSearchInputValue}
+                />
             </Grid>
         </Container>
     );

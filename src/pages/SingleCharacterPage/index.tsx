@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useLayoutEffect, useState, useContext} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -23,7 +23,7 @@ const SingleCharacterPage = () => {
 
     const goBack = () => nav(-1)
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         singleCharacterAsyncThunk(`${ALL_CHARACTERS_URL}/${id}`);
         favoriteList.find(item => item.id === Number(id)) ? setIsFavorite(true) : setIsFavorite(false)
         return () => {
