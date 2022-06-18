@@ -54,13 +54,13 @@ const AllCharactersPage = () => {
                         container
                         sx={{
                             display: "flex",
-                            justifyContent: "space-between",
+                            justifyContent: "flex-start",
                             flexWrap: "wrap",
                             margin: "0 auto 20px",
                         }}
                     >
                         {allCharacters?.map(({name, id, image, status}) => (
-                            <li key={id} style={{paddingBottom: "30px"}}>
+                            <li key={id} style={{paddingBottom: "30px", marginRight: "70px"}}>
                                 <Link to={`/characters/${id}`} style={{textDecoration: "none"}}>
                                     <CustomCard
                                         name={name}

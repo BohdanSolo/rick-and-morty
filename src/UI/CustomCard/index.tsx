@@ -11,7 +11,7 @@ interface CustomCardProps {
   name: string;
   image: string;
   status: string;
-  height: number;
+  height: number | string;
   children?: any;
 }
 
