@@ -1,9 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { CharacterTypes } from "../../types/apiTypes";
-import { setCharacters, setInfo } from "../slices/allCharactersSlice";
-import { UIContext } from "../../UI/UIContext";
-import { useContext } from "react";
+import {
+  setCharacters,
+  setInfo,
+  setNotFoundError,
+} from "../slices/allCharactersSlice";
+
 
 export const allCharactersAsyncThunk = createAsyncThunk(
   "setCharacters/AsyncThunk",
@@ -20,39 +23,31 @@ export const allCharactersAsyncThunk = createAsyncThunk(
         };
       });
       dispatch(setCharacters(charactersList));
+      dispatch(setNotFoundError(false));
     } catch (e) {
       if (e instanceof Error) {
-        const { setAlert } = useContext(UIContext);
-        setAlert({
-          show: true,
-          severity: "error",
-          message: e.message,
-        });
+        e.message === "Request failed with status code 404"
+          ? dispatch(setNotFoundError(true))
+          : dispatch(setNotFoundError(true));
       }
     }
   }
 );
 
-
 export const infoApiAsyncThunk = createAsyncThunk(
-    "infoApi/AsyncThunk",
-    async (url: string, { dispatch }) => {
-      try {
-        const res = await axios.get(url);
-        const data = res.data;
-        const info = {
-          pages: data.info.pages
-        };
-        dispatch(setInfo(info));
-      } catch (e) {
-        if (e instanceof Error) {
-          const { setAlert } = useContext(UIContext);
-          setAlert({
-            show: true,
-            severity: "error",
-            message: e.message,
-          });
-        }
+  "infoApi/AsyncThunk",
+  async (url: string, { dispatch }) => {
+    try {
+      const res = await axios.get(url);
+      const data = res.data;
+      const info = {
+        pages: data.info.pages,
+      };
+      dispatch(setInfo(info));
+    } catch (e) {
+      if (e instanceof Error) {
+        alert(e.message)
       }
     }
+  }
 );

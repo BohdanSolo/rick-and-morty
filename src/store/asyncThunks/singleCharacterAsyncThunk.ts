@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setSingleCharacter } from "../slices/singleCharacterSlice";
-import { UIContext } from "../../UI/UIContext";
-import { useContext } from "react";
+
 
 export const singleCharacterAsyncThunk = createAsyncThunk(
   "singleCharacter/AsyncThunk",
@@ -23,12 +22,7 @@ export const singleCharacterAsyncThunk = createAsyncThunk(
       dispatch(setSingleCharacter(singleCharacter));
     } catch (e) {
       if (e instanceof Error) {
-        const { setAlert } = useContext(UIContext);
-        setAlert({
-          show: true,
-          severity: "error",
-          message: e.message,
-        });
+        alert(e.message)
       }
     }
   }

@@ -16,6 +16,7 @@ const AllCharactersPage = () => {
     const [pageNumber, setPageNumber] = useState<number>(parseInt(location.search?.split("=")[1]) || 1);
     const [searchInputValue, setSearchInputValue] = useState<string>("");
     const allCharacters = useAppSelector((state) => state.allCharacters.characters);
+    const isNotFound = useAppSelector((state) => state.allCharacters.info.notFoundError);
     const {allCharactersAsyncThunk} = useActions()
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const AllCharactersPage = () => {
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchInputValue(e.target.value);
+            setSearchInputValue(e.target.value);
     };
 
 
@@ -33,11 +34,13 @@ const AllCharactersPage = () => {
             <Grid container sx={{display: "flex", justifyContent: "center", marginBottom: "50px"}}>
                 <Grid item xs={6}>
                     <TextField
-                        value={searchInputValue}
                         onChange={handleInputChange}
+                        value={searchInputValue}
                         variant="outlined"
                         label="Search character by name"
                         fullWidth
+                        error={isNotFound}
+                        helperText={isNotFound ? 'Not found, last found result is displayed' : ''}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">

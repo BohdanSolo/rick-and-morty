@@ -11,7 +11,8 @@ const initialState: setCharactersSliceTypes = {
     },
   ],
   info: {
-    pages: 0
+    pages: 0,
+    notFoundError: false
   },
 };
 
@@ -25,8 +26,11 @@ const allCharactersSlice = createSlice({
     setInfo: (state, action) => {
       state.info = action.payload;
     },
+    setNotFoundError: (state,action) => {
+      state.info.notFoundError = action.payload
+    }
   },
 });
 
-export const { setCharacters, setInfo } = allCharactersSlice.actions;
+export const { setCharacters, setInfo, setNotFoundError } = allCharactersSlice.actions;
 export default allCharactersSlice.reducer;

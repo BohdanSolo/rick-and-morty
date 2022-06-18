@@ -8,6 +8,7 @@ export interface setCharactersSliceTypes {
   characters: charactersProps[];
   info: {
     pages: number;
+    notFoundError: boolean;
   };
 }
 
