@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { setCharactersSliceTypes } from "../../types/slicesTypes";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SetCharactersSliceTypes } from "../../types/slicesTypes";
 
-const initialState: setCharactersSliceTypes = {
+const initialState: SetCharactersSliceTypes = {
   characters: [
     {
       name: "",
@@ -26,7 +26,7 @@ const allCharactersSlice = createSlice({
     setInfo: (state, action) => {
       state.info = action.payload;
     },
-    setNotFoundError: (state,action) => {
+    setNotFoundError: (state,action: PayloadAction<boolean>) => {
       state.info.notFoundError = action.payload
     }
   },

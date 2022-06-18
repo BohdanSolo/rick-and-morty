@@ -4,11 +4,11 @@ import CustomTextField from '../../../UI/CustomTextField/idex';
 import { registrationValidationScheme } from '../../../utils/validationScheme';
 import CustomButton from '../../../UI/CustomButton';
 
-type AuthFormTypes = {
+interface AuthFormTypes {
     handleSignup: (name: string, email: string, password: string) => void;
 };
 
-const RegisterForm: React.FC<AuthFormTypes> = ({ handleSignup }) => {
+const RegisterForm = ({ handleSignup }: AuthFormTypes): JSX.Element => {
     const initialValues = {
         email: '',
         name: '',

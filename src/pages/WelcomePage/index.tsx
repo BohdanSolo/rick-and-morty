@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {Typography, Box} from "@mui/material";
 import {useActions} from "../../hooks/useActions";
-import {ALL_CHARACTERS_URL} from "../../api/charactersAPI";
+import {ALL_CHARACTERS_URL} from "../../constants/charactersAPI";
 
-const WelcomePage = () => {
+const WelcomePage = (): JSX.Element => {
     const {infoApiAsyncThunk} = useActions()
 
     useEffect(() => {

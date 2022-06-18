@@ -18,50 +18,51 @@ const CustomTextField: React.FC<CustomTextFieldTyped> = ({
   type,
   isToggleVisibility,
 }) => {
+
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [field, mata] = useField(name);
 
-  const setVisibleCondition = () => {
-    if (passwordVisible && isToggleVisibility) {
-      return <VisibilityOffIcon />;
-    }
-    if (!passwordVisible && isToggleVisibility) {
-      return <VisibilityIcon />;
-    }
-    return null;
+  const setVisibleCondition = (): JSX.Element | null => {
+      if (passwordVisible && isToggleVisibility) {
+          return <VisibilityOffIcon/>;
+      }
+      if (!passwordVisible && isToggleVisibility) {
+          return <VisibilityIcon/>;
+      }
+      return null;
   };
 
-  const setTypeCondition = () => {
-    if (type === "password" && isToggleVisibility) {
-      return !passwordVisible ? "password" : "text";
-    }
-    return type;
-  };
+    const setTypeCondition = (): string => {
+        if (type === "password" && isToggleVisibility) {
+            return !passwordVisible ? "password" : "text";
+        }
+        return type;
+    };
 
-  return (
-    <TextField
-      variant="outlined"
-      required
-      type={setTypeCondition()}
-      label={label}
-      fullWidth
-      sx={{ marginBottom: "30px" }}
-      {...field}
-      error={!!(mata && mata.touched && mata.error)}
-      helperText={mata && mata.touched && mata.error ? mata.error : ""}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment
-            position="end"
-            onClick={() => setPasswordVisible((prev) => !prev)}
-            sx={{ cursor: "pointer" }}
-          >
-            {setVisibleCondition()}
-          </InputAdornment>
-        ),
-      }}
-    />
-  );
+    return (
+        <TextField
+            variant="outlined"
+            required
+            type={setTypeCondition()}
+            label={label}
+            fullWidth
+            sx={{marginBottom: "30px"}}
+            {...field}
+            error={!!(mata && mata.touched && mata.error)}
+            helperText={mata && mata.touched && mata.error ? mata.error : ""}
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment
+                        position="end"
+                        onClick={() => setPasswordVisible((prev) => !prev)}
+                        sx={{cursor: "pointer"}}
+                    >
+                        {setVisibleCondition()}
+                    </InputAdornment>
+                ),
+            }}
+        />
+    );
 };
 
 export default CustomTextField;

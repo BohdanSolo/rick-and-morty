@@ -18,3 +18,10 @@ declare module '@mui/material/styles' {
         };
     }
 }
+
+declare function useLocation(): Location;
+
+interface Location extends Path {
+    state: unknown;
+    key: Key;
+}

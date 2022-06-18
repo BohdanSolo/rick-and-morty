@@ -1,23 +1,27 @@
 import React, {useState, useEffect} from "react";
 import {Box, Grid, Typography} from "@mui/material";
 import axios from "axios";
-import {CharacterTypes} from "../../types/slicesTypes";
+import {CharacterTypesInfo} from "../../types/slicesTypes";
 
 interface CharacterInfoProps {
-    character: CharacterTypes
+    character: CharacterTypesInfo
 }
 
-interface characterInfoTypes {
+interface CharacterInfoTypes {
     characteristic: string;
     info: string;
 }
 
-const CharacterInfo: React.FC<CharacterInfoProps> = ({character}) => {
-    const [episodes, setEpisodes] = useState<Array<any> | null | undefined>(null)
+interface EpisodeTypes {
+    name: string,
+    episode: string
+}
+
+const CharacterInfo = ({character}: CharacterInfoProps): JSX.Element => {
+    const [episodes, setEpisodes] = useState<EpisodeTypes[] | null | undefined>(null)
 
     useEffect(() => {
         const fetchAllEpisodes = async (arr: string[]) => {
-            console.log(1);
             if (arr) {
                 const requestsEpisodes = arr?.map((episodeURL) => axios.get(episodeURL));
                 const responseAll = await Promise.all(requestsEpisodes);
@@ -34,7 +38,7 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({character}) => {
     }, [character])
 
 
-    const characterInfo: characterInfoTypes[] = [
+    const characterInfo: CharacterInfoTypes[] = [
         {characteristic: "Name", info: character.name},
         {characteristic: "Gender", info: character.gender},
         {characteristic: "Created", info: character.created},

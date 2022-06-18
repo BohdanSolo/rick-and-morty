@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { currentUserSliceTypes } from "../../types/slicesTypes";
+import { CurrentUserSliceTypes } from "../../types/slicesTypes";
 
 
-const initialState: currentUserSliceTypes =  {
+const initialState: CurrentUserSliceTypes =  {
       name: "",
       email: "",
       img: "",

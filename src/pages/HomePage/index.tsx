@@ -20,19 +20,21 @@ import {Link, Outlet, useLocation} from "react-router-dom";
 import {RouteNames} from "../../types/routes";
 import {useAppSelector} from "../../hooks/reduxHooks";
 
-const HomePage: React.FC = () => {
+const HomePage = (): JSX.Element => {
     const {name, img} = useCurrentUser();
     const {removeUser} = useActions();
+    const location = useLocation();
     const auth = useAuth();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const favoriteCharactersList = useAppSelector(
         (state) => state.favorite.favoriteCharacters
     );
-    const handleAvatarMenuClose = () => {
+
+    const handleAvatarMenuClose = (): void => {
         setAnchorEl(null);
     };
 
-    const handleAvatarMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleAvatarMenu = (event: React.MouseEvent<HTMLElement>): void => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -43,7 +45,7 @@ const HomePage: React.FC = () => {
         handleAvatarMenuClose();
     };
 
-    const getInitials = (name: string | null | undefined) => {
+    const getInitials = (name: string | null | undefined): string | null => {
         if (name) {
             const [first, last] = name?.split(" ");
             return first[0] + last[0];
@@ -57,7 +59,6 @@ const HomePage: React.FC = () => {
         {text: "liked", link: RouteNames.LIKED},
     ];
 
-    const location = useLocation();
 
     const typographyStyles = {
         color: "white",

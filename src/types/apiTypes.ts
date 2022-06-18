@@ -18,3 +18,15 @@ export interface CharacterTypes {
     "url"?: string,
     "created"?: string,
 }
+
+export interface InfoTypes {
+    "count": string,
+    "pages": string,
+    "next": string | null,
+    "prev": string | null,
+}
+
+export interface ResponseTypes {
+    info: InfoTypes,
+    results: CharacterTypes[]
+}

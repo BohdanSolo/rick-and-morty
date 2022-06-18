@@ -1,29 +1,29 @@
-export interface currentUserSliceTypes {
-  name: string | undefined | null;
-  email: string | undefined | null;
-  img?: string | undefined | null;
+export interface CurrentUserSliceTypes {
+  name: string | undefined;
+  email: string | undefined;
+  img?: string | undefined;
 }
 
-export interface setCharactersSliceTypes {
-  characters: charactersProps[];
+export interface SetCharactersSliceTypes {
+  characters: CharactersProps[];
   info: {
     pages: number;
     notFoundError: boolean;
   };
 }
 
-export interface charactersProps {
+export interface CharactersProps {
   name: string;
   image: string;
   status: string;
   id: number | null;
 }
 
-export interface singleCharacterTypes {
-  character: CharacterTypes;
+export interface SingleCharacterTypes {
+  character: CharacterTypesInfo;
 }
 
-export interface CharacterTypes {
+export interface CharacterTypesInfo {
   name: string;
   id: number | null;
   image: string;
@@ -36,5 +36,5 @@ export interface CharacterTypes {
 
 
 export interface FavoriteTypes {
-  favoriteCharacters: charactersProps[];
+  favoriteCharacters: CharactersProps[];
 }

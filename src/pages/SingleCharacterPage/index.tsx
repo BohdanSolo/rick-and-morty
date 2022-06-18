@@ -1,9 +1,9 @@
-import React, {useLayoutEffect, useState, useContext} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {useActions} from "../../hooks/useActions";
-import {ALL_CHARACTERS_URL} from "../../api/charactersAPI";
+import {ALL_CHARACTERS_URL} from "../../constants/charactersAPI";
 import {useAppSelector} from "../../hooks/reduxHooks";
 import CustomCard from "../../UI/CustomCard";
 import {CardActions, Container, Grid, IconButton, Button} from "@mui/material";
@@ -11,7 +11,7 @@ import back from "./back.svg"
 import CharacterInfo from "../../components/CharacterInfo";
 import {UIContext} from "../../UI/UIContext";
 
-const SingleCharacterPage = () => {
+const SingleCharacterPage = (): JSX.Element => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
     const {singleCharacterAsyncThunk, setSingleCharacter} = useActions();
     const {setFavorite, removeFromFavorite} = useActions();
@@ -21,9 +21,9 @@ const SingleCharacterPage = () => {
     const character = useAppSelector((state) => state.singleCharacter.character);
     const favoriteList = useAppSelector((state) => state.favorite.favoriteCharacters);
 
-    const goBack = () => nav(-1)
+    const goBack = (): void => nav(-1)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         singleCharacterAsyncThunk(`${ALL_CHARACTERS_URL}/${id}`);
         favoriteList.find(item => item.id === Number(id)) ? setIsFavorite(true) : setIsFavorite(false)
         return () => {
