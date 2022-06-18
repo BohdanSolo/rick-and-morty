@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
             {menuItems.map((item) => (
               <MenuItem key={item.text}>
                 <Link to={item.link} style={{ textDecoration: "none" }}>
-                  <Typography variant="h6" sx={{...typographyStyles, borderBottom: location.pathname === item.link ? "3px solid white" : 'none',}}>
+                  <Typography variant="h6" sx={{...typographyStyles, borderBottom: location.pathname === item.link ? "2px solid white" : 'none',}}>
                     {item.text}
                   </Typography>
                 </Link>

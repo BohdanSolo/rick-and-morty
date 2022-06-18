@@ -1,19 +1,23 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import {useActions} from "../../hooks/useActions";
 import {ALL_CHARACTERS_URL} from "../../api/charactersAPI";
 import {useAppSelector} from "../../hooks/reduxHooks";
 import CustomCard from "../../UI/CustomCard";
-import {Box, CardActions, Container, Grid, IconButton, Typography,} from "@mui/material";
+import {Box, CardActions, Container, Grid, IconButton, Typography, Button} from "@mui/material";
 import axios from "axios";
+import back from "./back.svg"
 
 const SingleCharacterPage = () => {
   const [episodes, setEpisodes] = useState<Array<any> | null | undefined>(null)
   const character = useAppSelector((state) => state.singleCharacter.character);
-  const { id } = useParams();
   const { singleCharacterAsyncThunk, setSingleCharacter } = useActions();
+  const { id } = useParams();
+  const nav = useNavigate()
+  const goBack = () => nav(-1)
+
 
   useEffect(() => {
     singleCharacterAsyncThunk(`${ALL_CHARACTERS_URL}/${id}`);
@@ -61,7 +65,12 @@ const SingleCharacterPage = () => {
           alignItems="center"
           marginBottom="30px"
         >
-          <Grid>
+          <Grid item xs={12} marginBottom="30px">
+            <Button variant="outlined" onClick={goBack}>
+              <img src={back} alt="Go back"/>Go back
+            </Button>
+          </Grid>
+          <Grid item>
             <CustomCard
               name={character.name}
               image={character.image}
@@ -81,7 +90,7 @@ const SingleCharacterPage = () => {
               </CardActions>
             </CustomCard>
           </Grid>
-          <Grid>
+          <Grid item>
             {characterInfo?.map((item) => (
               <Box key={item.info} display="block" sx={{ margin: "20px auto" }}>
                 <Typography variant="h5" component="span" fontWeight={"bold"}>
