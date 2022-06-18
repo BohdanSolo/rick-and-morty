@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Rick and Morty Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Links
 
-## Available Scripts
+- [Link to the deployed project](https://rick-and-morty-6abd4.web.app);
 
-In the project directory, you can run:
+- [Link to repository](https://github.com/BohdanSolo/rick-and-morty);
 
-### `npm start`
+## Scripts
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm start                # run app in the development mode
+npm run build            # builds the app for production     
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## API
+- [Main API](https://rickandmortyapi.com/documentation);
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Stack
+- JavaScript;
+- TypeScript;
+- React 18.0;
+- Redux (Redux Toolkit);
+- React Router v.6;
+- Material-UI;
+- Firebase;
+- ReactFire;
+- Formik;
+- Custom hooks (useActions, useDebounce, useAppSelector, useAppDispatch)
+- Other packages: axios, yup etc;
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Application features:
+- Registration logic;
+- Login logic;
+- Facebook login;
+- Verification of login and password during filling out the form;
+- Displaying the user info in the right top corner;
+- Routing with private and public routes, dynamic routes;
+- Displaying all characters with pagination;
+- Logic of searching by name;
+- Optimized searching with custom hook;
+- Displaying additional information by clicking on the particular user;
+- Like/dislike logic (aka adding and removing a character from favorites);
+- Handling errors during authentication and interaction with UI and API;
