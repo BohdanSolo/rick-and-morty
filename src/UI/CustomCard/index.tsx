@@ -65,4 +65,4 @@ const CustomCard: React.FC<CustomCardProps> = ({
   );
 };
 
-export default CustomCard;
+export default React.memo(CustomCard);

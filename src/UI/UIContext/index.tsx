@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import MuiAlert, { AlertColor } from '@mui/lab/Alert';
+import MuiAlert, { AlertColor } from '@mui/material/Alert';
 import { Snackbar } from '@mui/material';
 
 export const UIContext = createContext<UIContextProps>({} as UIContextProps);

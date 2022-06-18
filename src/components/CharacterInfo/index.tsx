@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Box, Grid, Typography} from "@mui/material";
 import axios from "axios";
 import {CharacterTypes} from "../../types/slicesTypes";
@@ -6,6 +6,7 @@ import {CharacterTypes} from "../../types/slicesTypes";
 interface CharacterInfoProps {
     character: CharacterTypes
 }
+
 interface characterInfoTypes {
     characteristic: string;
     info: string;
@@ -14,20 +15,24 @@ interface characterInfoTypes {
 const CharacterInfo: React.FC<CharacterInfoProps> = ({character}) => {
     const [episodes, setEpisodes] = useState<Array<any> | null | undefined>(null)
 
-    const fetchAllEpisodes = async (arr: string[]) => {
-        if (arr) {
-            const requestsEpisodes = arr?.map((episodeURL) => axios.get(episodeURL));
-            const responseAll = await Promise.all(requestsEpisodes);
-            const episodes = responseAll.map((res) => res.data);
-            return episodes.map((episode) => {
-                return {
-                    name: episode.name,
-                    episode: episode.episode,
-                };
-            })
-        }
-    };
-    fetchAllEpisodes(character.episode).then(res => setEpisodes(res));
+    useEffect(() => {
+        const fetchAllEpisodes = async (arr: string[]) => {
+            console.log(1);
+            if (arr) {
+                const requestsEpisodes = arr?.map((episodeURL) => axios.get(episodeURL));
+                const responseAll = await Promise.all(requestsEpisodes);
+                const episodes = responseAll.map((res) => res.data);
+                return episodes.map((episode) => {
+                    return {
+                        name: episode.name,
+                        episode: episode.episode,
+                    };
+                })
+            }
+        };
+        fetchAllEpisodes(character.episode).then(res => setEpisodes(res));
+    }, [character])
+
 
     const characterInfo: characterInfoTypes[] = [
         {characteristic: "Name", info: character.name},
@@ -62,4 +67,4 @@ const CharacterInfo: React.FC<CharacterInfoProps> = ({character}) => {
     );
 };
 
-export default CharacterInfo;
+export default React.memo(CharacterInfo);
