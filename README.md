@@ -33,7 +33,7 @@ npm run build            # builds the app for production
 ## Application features:
 - Registration logic;
 - Login logic;
-- Facebook login;
+- Facebook login (log in via Facebook works only with HTTPS localhost, or you can  check this feature using a deployed project);
 - Verification of login and password during filling out the form;
 - Displaying the user info in the right top corner;
 - Routing with private and public routes, dynamic routes;
