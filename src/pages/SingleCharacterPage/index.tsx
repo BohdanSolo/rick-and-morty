@@ -73,9 +73,9 @@ const SingleCharacterPage = (): JSX.Element => {
                     </Grid>
                     <Grid item>
                         <CustomCard
-                            name={character.name}
-                            image={character.image}
-                            status={character.status}
+                            name={character?.name}
+                            image={character?.image}
+                            status={character?.status}
                             height="auto"
                         >
                             <CardActions

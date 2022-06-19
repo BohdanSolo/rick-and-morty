@@ -77,7 +77,6 @@ const HomePage = (): JSX.Element => {
     };
 
 
-
     return (
         <Box flexGrow={1}>
             <AppBar position="static" color="primary" sx={{marginBottom: "50px"}}>
@@ -129,19 +128,21 @@ const HomePage = (): JSX.Element => {
                                 ))}
                             </Menu>
                         </Box>
-                        <Box sx={{display: {xs: 'none', sm:'flex'}, flexGrow: 1, mr: 5 }}>
-                            <img
-                                src={logo}
-                                alt="logo"
-                                style={{maxWidth: "300px", height: "70px", flexGrow: 1}}
-                            />
-                        </Box>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Link to={RouteNames.HOME_PAGE}>
+                            <Box sx={{display: {xs: 'none', sm: 'flex'}, flexGrow: 1, mr: 5}}>
+                                <img
+                                    src={logo}
+                                    alt="logo"
+                                    style={{maxWidth: "300px", height: "70px", flexGrow: 1}}
+                                />
+                            </Box>
+                        </Link>
+                        <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                             {menuItems.map((item) => (
                                 <MenuItem key={item.text}>
                                     <Link to={item.link} style={{textDecoration: "none"}}>
                                         <Typography variant="h6" sx={{
-                                            ...typographyStyles,  color: "white",
+                                            ...typographyStyles, color: "white",
                                             borderBottom: location.pathname === item.link ? "2px solid white" : 'none',
                                         }}>
                                             {item.text === 'likes' ?

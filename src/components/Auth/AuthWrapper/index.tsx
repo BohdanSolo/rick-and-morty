@@ -64,18 +64,6 @@ const AuthWrapper = ({
         <Container fixed maxWidth="lg">
             <Paper elevation={3}>
                 <Grid container spacing={0}>
-                    <Grid item md={6} xs={12}>
-                        <img
-                            src={bg}
-                            alt="Rick and Morty"
-                            style={{
-                                display: "block",
-                                width: "100%",
-                                maxWidth: "720px",
-                                maxHeight: "824px",
-                            }}
-                        />
-                    </Grid>
                     <Grid
                         item
                         md={6}
@@ -127,6 +115,18 @@ const AuthWrapper = ({
                                 </Typography>
                             </InfoGrid>
                         </Wrapper>
+                    </Grid>
+                    <Grid item md={6} xs={12}>
+                        <img
+                            src={bg}
+                            alt="Rick and Morty"
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                maxWidth: "720px",
+                                maxHeight: "824px",
+                            }}
+                        />
                     </Grid>
                 </Grid>
             </Paper>
