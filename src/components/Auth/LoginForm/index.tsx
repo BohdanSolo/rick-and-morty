@@ -15,14 +15,14 @@ interface LoginFormTypes {
 }
 
 const LoginForm = ({
-  handleSignIn,
-  handleFacebookSignIn,
-  handleGoogleSignIn,
-}: LoginFormTypes): JSX.Element => {
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+                       handleSignIn,
+                       handleFacebookSignIn,
+                       handleGoogleSignIn,
+                   }: LoginFormTypes): JSX.Element => {
+    const initialValues = {
+        email: "",
+        password: "",
+    };
 
     return (
         <Formik

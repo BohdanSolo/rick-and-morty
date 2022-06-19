@@ -16,12 +16,12 @@ interface CustomCardProps {
 }
 
 const CustomCard = ({
-  name,
-  image,
-  status,
-  children,
-  height,
-}: CustomCardProps): JSX.Element => {
+                        name,
+                        image,
+                        status,
+                        children,
+                        height,
+                    }: CustomCardProps): JSX.Element => {
 
     return (
         <Card sx={{width: 300, height: height}}>

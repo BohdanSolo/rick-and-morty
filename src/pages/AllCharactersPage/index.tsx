@@ -29,11 +29,11 @@ const AllCharactersPage = (): JSX.Element => {
     };
 
 
-     const LiItem = styled('li')(({theme}) => ({
+    const LiItem = styled('li')(({theme}) => ({
         paddingBottom: "30px",
         marginRight: "70px",
         [theme.breakpoints.down('md')]: {
-        marginRight: "30px",
+            marginRight: "30px",
         },
         [theme.breakpoints.down('sm')]: {
             marginRight: "0",

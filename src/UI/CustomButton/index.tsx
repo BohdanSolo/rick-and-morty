@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import Button from "@mui/material/Button";
-import { UIContext } from "../UIContext";
+import {UIContext} from "../UIContext";
 
 type CustomButtonProps = {
-  dirty: boolean;
-  isValid: boolean;
-  text: string;
+    dirty: boolean;
+    isValid: boolean;
+    text: string;
 };
 
 const CustomButton = ({text, dirty, isValid,}: CustomButtonProps): JSX.Element => {
 
-  const { alert } = useContext(UIContext);
+    const {alert} = useContext(UIContext);
     return (
         <Button
             disabled={!isValid || !dirty || alert.show} // Using alert.show, because isSubmiting from Formik doesn't work properly
