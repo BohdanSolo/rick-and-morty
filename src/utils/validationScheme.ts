@@ -9,7 +9,7 @@ export const registrationValidationScheme = Yup.object().shape({
     .required("This field is required"),
   email: Yup.string().email("Invalid email").required("This field is required"),
   password: Yup.string()
-    .min(6, "At least 6 characters are required")
+    .min(10, "At least 10 characters are required")
     .required("This field is required"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password")], "Enter the same password")
@@ -19,6 +19,6 @@ export const registrationValidationScheme = Yup.object().shape({
 export const loginValidationScheme = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("This field is required"),
   password: Yup.string()
-    .min(6, "Password too short (at least 6 characters)")
+    .min(10, "Password too short (at least 10 characters)")
     .required("This field is required"),
 });

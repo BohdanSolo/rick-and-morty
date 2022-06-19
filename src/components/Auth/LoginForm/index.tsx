@@ -4,15 +4,20 @@ import CustomButton from "../../../UI/CustomButton";
 import CustomTextField from "../../../UI/CustomTextField/idex";
 import {loginValidationScheme} from "../../../utils/validationScheme";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import FacebookIcon from "./FacebookIcon";
+import GoogleIcon from "./GoogleIcon";
 
 interface LoginFormTypes {
     handleSignIn: (email: string, password: string) => void;
     handleFacebookSignIn: () => void;
+    handleGoogleSignIn: () => void;
 }
 
 const LoginForm = ({
   handleSignIn,
   handleFacebookSignIn,
+  handleGoogleSignIn,
 }: LoginFormTypes): JSX.Element => {
   const initialValues = {
     email: "",
@@ -42,19 +47,29 @@ const LoginForm = ({
                         isToggleVisibility
                     />
                     <CustomButton dirty={dirty} isValid={isValid} text="Login"/>
+                    <Typography component="div" sx={{margin: '40px auto 10px', textTransform: 'uppercase'}}>
+                        login with:
+                    </Typography>
                     <Button
                         onClick={handleFacebookSignIn}
                         variant="text"
-                        fullWidth
                         sx={{
                             color: "#57b742",
-                            marginTop: "20px",
-                            padding: "15px",
-                            fontWeight: "bold",
-                            textTransform: "uppercase",
                         }}
                     >
-                        Login with Facebook
+                        <FacebookIcon/>
+                    </Button>
+                    <Typography component="span" sx={{padding: '5px'}}>
+                        or
+                    </Typography>
+                    <Button
+                        onClick={handleFacebookSignIn}
+                        variant="text"
+                        sx={{
+                            color: "#57b742",
+                        }}
+                    >
+                        <GoogleIcon/>
                     </Button>
                 </Form>
             )}

@@ -15,6 +15,7 @@ const LoginPage = (): JSX.Element => {
     const {setCurrentUser} = useActions();
     const auth = useAuth();
     const FbProvider = new firebase.auth.FacebookAuthProvider();
+    const GoogleProvider = new firebase.auth.GoogleAuthProvider();
     const {isAuth} = useCurrentUser();
     const location = useLocation();
 
@@ -49,6 +50,34 @@ const LoginPage = (): JSX.Element => {
 
     const handleFacebookSignIn = useCallback(async () => {
         try {
+            await auth.signInWithPopup(GoogleProvider);
+            const user = auth.currentUser;
+            if (user) {
+                setCurrentUser({
+                    name: user.displayName,
+                    email: user.email,
+                    img: user.photoURL,
+                });
+            }
+            setAlert({
+                show: true,
+                severity: "success",
+                message: "Signed in with Facebook",
+            });
+        } catch (e) {
+            if (e instanceof Error) {
+                setAlert({
+                    show: true,
+                    severity: "error",
+                    message: e.message,
+                });
+            }
+        }
+    }, [setAlert, auth, setCurrentUser]);
+
+
+    const handleGoogleSignIn = useCallback(async () => {
+        try {
             await auth.signInWithPopup(FbProvider);
             const user = auth.currentUser;
             if (user) {
@@ -74,6 +103,7 @@ const LoginPage = (): JSX.Element => {
         }
     }, [setAlert, auth, setCurrentUser]);
 
+
     if (isAuth) {
         return <Navigate to={RouteNames.HOME_PAGE} state={{from: location}}/>;
     }
@@ -98,6 +128,7 @@ const LoginPage = (): JSX.Element => {
             <LoginForm
                 handleSignIn={handleSignIn}
                 handleFacebookSignIn={handleFacebookSignIn}
+                handleGoogleSignIn={handleGoogleSignIn}
             />
         </AuthWrapper>
     );
