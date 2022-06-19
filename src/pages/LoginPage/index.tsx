@@ -62,7 +62,7 @@ const LoginPage = (): JSX.Element => {
             setAlert({
                 show: true,
                 severity: "success",
-                message: "Signed in with Facebook",
+                message: "Signed in with Google",
             });
         } catch (e) {
             if (e instanceof Error) {
