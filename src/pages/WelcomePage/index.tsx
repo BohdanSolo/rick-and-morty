@@ -1,7 +1,18 @@
 import React, {useEffect} from 'react';
-import {Typography, Box} from "@mui/material";
+import {Typography, Box, styled} from "@mui/material";
 import {useActions} from "../../hooks/useActions";
 import {ALL_CHARACTERS_URL} from "../../constants/charactersAPI";
+
+
+const Wrapper = styled(Box)(({theme}) => ({
+    height: window.innerHeight - 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+        height: 'auto',
+    },
+}));
 
 const WelcomePage = (): JSX.Element => {
     const {infoApiAsyncThunk} = useActions()
@@ -11,13 +22,14 @@ const WelcomePage = (): JSX.Element => {
     }, [])
 
     return (
-        <Box sx={{height: window.innerHeight - 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Typography variant="h2" component="div" color="secondary" fontWeight="bold" textAlign="center">
-                Welcome on board the Rick and Morty Application! <br/>
-                You can see all characters from this cartoon or find one of them. <br/> Just click on the appropriate buttons in Appbar.
-                Do you like someone? <br/> Don't hesitate to add this character to your favorites!
+        <Wrapper>
+            <Typography variant="h3" component="div" color="secondary" fontWeight="bold" textAlign="center" sx={{maxWidth: '1000px'}}>
+                Welcome on board the Rick and Morty Application!
+                You can see all characters from this cartoon or find one of them.Just click on the appropriate
+                buttons in Appbar.
+                Do you like someone? Don't hesitate to add this character to your favorites!
             </Typography>
-        </Box>
+        </Wrapper>
 
     );
 };

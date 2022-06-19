@@ -7,9 +7,10 @@ import {
     MenuItem,
     Box,
     AppBar,
-    Badge
+    Badge, styled
 } from "@mui/material";
 import Menu from "@mui/material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 import {useAuth} from "reactfire";
 import logo from "../../components/Auth/AuthWrapper/RMlogo.png";
 import {useCurrentUser} from "../../hooks/useCurrentUser";
@@ -25,17 +26,25 @@ const HomePage = (): JSX.Element => {
     const {removeUser} = useActions();
     const location = useLocation();
     const auth = useAuth();
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorAvatarEl, setAnchorAvatarEl] = React.useState<null | HTMLElement>(null);
+    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const favoriteCharactersList = useAppSelector(
         (state) => state.favorite.favoriteCharacters
     );
 
-    const handleAvatarMenuClose = (): void => {
-        setAnchorEl(null);
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
     };
 
+
+    const handleAvatarMenuClose = (): void => {
+        setAnchorAvatarEl(null);
+    };
     const handleAvatarMenu = (event: React.MouseEvent<HTMLElement>): void => {
-        setAnchorEl(event.currentTarget);
+        setAnchorAvatarEl(event.currentTarget);
     };
 
     const logOut = async () => {
@@ -56,43 +65,94 @@ const HomePage = (): JSX.Element => {
     const menuItems = [
         {text: "home", link: RouteNames.HOME_PAGE},
         {text: "all characters", link: RouteNames.ALL_CHARACTERS},
-        {text: "liked", link: RouteNames.LIKED},
+        {text: "likes", link: RouteNames.LIKED},
     ];
 
 
     const typographyStyles = {
-        color: "white",
         textAlign: "center",
         textTransform: "uppercase",
         textDecoration: "none",
         padding: "20px",
     };
 
+
+
     return (
         <Box flexGrow={1}>
             <AppBar position="static" color="primary" sx={{marginBottom: "50px"}}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <Box sx={{flexGrow: 1}}>
+                        <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon sx={{color: "white"}}/>
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: {xs: 'block', md: 'none',},
+                                }}
+                            >
+                                {menuItems.map((item) => (
+                                    <MenuItem key={item.text}>
+                                        <Link to={item.link} style={{textDecoration: "none"}}>
+                                            <Typography variant="h6" sx={{
+                                                ...typographyStyles, color: "#00b2c7",
+                                                borderBottom: location.pathname === item.link ? "2px solid white" : 'none',
+                                            }}>
+                                                {item.text === 'likes' ?
+                                                    <Badge badgeContent={favoriteCharactersList.length} color="success"
+                                                           showZero
+                                                           overlap='rectangular'>{item.text}</Badge> : item.text}
+                                            </Typography>
+                                        </Link>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+                        <Box sx={{display: {xs: 'none', sm:'flex'}, flexGrow: 1, mr: 5 }}>
                             <img
                                 src={logo}
                                 alt="logo"
-                                style={{width: "300px", height: "70px", flexGrow: 1}}
+                                style={{maxWidth: "300px", height: "70px", flexGrow: 1}}
                             />
                         </Box>
-                        {menuItems.map((item) => (
-                            <MenuItem key={item.text}>
-                                <Link to={item.link} style={{textDecoration: "none"}}>
-                                    <Typography variant="h6" sx={{
-                                        ...typographyStyles,
-                                        borderBottom: location.pathname === item.link ? "2px solid white" : 'none',
-                                    }}>
-                                        {item.text === 'liked' ?
-                                            <Badge badgeContent={favoriteCharactersList.length} color="success" showZero overlap='rectangular' >{item.text}</Badge> : item.text}
-                                    </Typography>
-                                </Link>
-                            </MenuItem>
-                        ))}
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            {menuItems.map((item) => (
+                                <MenuItem key={item.text}>
+                                    <Link to={item.link} style={{textDecoration: "none"}}>
+                                        <Typography variant="h6" sx={{
+                                            ...typographyStyles,  color: "white",
+                                            borderBottom: location.pathname === item.link ? "2px solid white" : 'none',
+                                        }}>
+                                            {item.text === 'likes' ?
+                                                <Badge badgeContent={favoriteCharactersList.length} color="success"
+                                                       showZero
+                                                       overlap='rectangular'>{item.text}</Badge> : item.text}
+                                        </Typography>
+                                    </Link>
+                                </MenuItem>
+                            ))}
+                        </Box>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -107,7 +167,7 @@ const HomePage = (): JSX.Element => {
                         </IconButton>
                         <Menu
                             id="menu-appbar"
-                            anchorEl={anchorEl}
+                            anchorEl={anchorAvatarEl}
                             anchorOrigin={{
                                 vertical: "bottom",
                                 horizontal: "right",
@@ -117,7 +177,7 @@ const HomePage = (): JSX.Element => {
                                 vertical: "top",
                                 horizontal: "right",
                             }}
-                            open={Boolean(anchorEl)}
+                            open={Boolean(anchorAvatarEl)}
                             onClose={handleAvatarMenuClose}
                         >
                             <MenuItem onClick={logOut}>Logout</MenuItem>

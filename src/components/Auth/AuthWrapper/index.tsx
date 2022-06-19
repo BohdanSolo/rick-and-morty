@@ -1,9 +1,5 @@
 import React, { ReactElement, ReactNodeArray } from "react";
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import {Container, Paper, Grid, Box, Typography, styled} from "@mui/material";
 import { Link } from "react-router-dom";
 import bg from "./bg.jpg";
 import logo from "./RMlogo.png";
@@ -22,6 +18,40 @@ interface AuthWrapperTypes {
     | undefined;
 }
 
+
+const Root = styled('div')(({ theme }) => ({
+    height: "100vh",
+    display: 'flex',
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "0",
+    margin: "0",
+}));
+
+const Wrapper = styled(Box)(({ theme }) => ({
+    paddingTop: "20px",
+    width: "375px",
+    textAlign: "center",
+    [theme.breakpoints.down('md')]: {
+        width: "90%",
+        height: '100%'
+    },
+}));
+
+const InfoGrid = styled(Grid)(({ theme }) => ({
+    position: "absolute",
+    bottom: "30px",
+    left: "50%",
+    transform: "translate(-50%)",
+    [theme.breakpoints.down('lg')]: {
+        position: 'static',
+        margin: '0 auto',
+        left: "0",
+        transform: "translate(0)",
+    },
+}));
+
+
 const AuthWrapper = ({
   text,
   question,
@@ -29,19 +59,12 @@ const AuthWrapper = ({
   children,
 }: AuthWrapperTypes): JSX.Element => {
     return (
-        <Box
-            height="100vh"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            padding="0"
-            margin="0"
+        <Root
         >
             <Container fixed maxWidth="lg">
                 <Paper elevation={3}>
                     <Grid container spacing={0}>
-                        <Grid item xs={6}>
+                        <Grid item md={6} sm={12}>
                             <img
                                 src={bg}
                                 alt="Rick and Morty"
@@ -55,12 +78,13 @@ const AuthWrapper = ({
                         </Grid>
                         <Grid
                             item
-                            xs={6}
+                            md={6} sm={12}
                             position="relative"
                             display="flex"
                             justifyContent="center"
+                            height="auto"
                         >
-                            <Box paddingTop="20px" width="375px" textAlign="center">
+                            <Wrapper>
                                 <Box marginBottom="0px">
                                     <img
                                         src={logo}
@@ -69,18 +93,14 @@ const AuthWrapper = ({
                                     />
                                 </Box>
                                 {children}
-                                <Grid
-                                    item
-                                    position="absolute"
-                                    bottom="30px"
-                                    sx={{left: "50%", transform: "translate(-50%)"}}
+                                <InfoGrid
                                 >
                                     <Typography
                                         variant="h2"
                                         component="div"
                                         fontSize="14px"
                                         fontWeight="600"
-                                        marginBottom="10px"
+                                        margin="10px auto"
                                         color="#00b2c7"
                                     >
                                         {question}
@@ -90,6 +110,7 @@ const AuthWrapper = ({
                                         component="div"
                                         fontSize="13px"
                                         fontWeight="500"
+                                        marginBottom="10px"
                                     >
                                         <Link
                                             to={`${route}`}
@@ -98,18 +119,19 @@ const AuthWrapper = ({
                                                 color: "#57b742",
                                                 textTransform: "uppercase",
                                                 textDecoration: "none",
+                                                marginBottom: "10px"
                                             }}
                                         >
                                             {text}
                                         </Link>
                                     </Typography>
-                                </Grid>
-                            </Box>
+                                </InfoGrid>
+                            </Wrapper>
                         </Grid>
                     </Grid>
                 </Paper>
             </Container>
-        </Box>
+        </Root>
     );
 };
 

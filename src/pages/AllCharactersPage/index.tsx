@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useAppSelector} from "../../hooks/reduxHooks";
 import AppPagination from "../../components/AppPagination";
 import {Link, useLocation} from "react-router-dom";
-import {Container, Grid} from "@mui/material";
+import {Box, Container, Grid, styled} from "@mui/material";
 import CustomCard from "../../UI/CustomCard";
 import {useActions} from "../../hooks/useActions";
 import {ALL_CHARACTERS_URL} from "../../constants/charactersAPI";
@@ -28,13 +28,25 @@ const AllCharactersPage = (): JSX.Element => {
         setPageNumber(1)
     };
 
+
+     const LiItem = styled('li')(({theme}) => ({
+        paddingBottom: "30px",
+        marginRight: "70px",
+        [theme.breakpoints.down('md')]: {
+        marginRight: "30px",
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginRight: "0",
+        },
+    }));
+
     return (
         <Container maxWidth="xl">
             <Grid
                 container
                 sx={{display: "flex", justifyContent: "center", marginBottom: "50px"}}
             >
-                <Grid item xs={6}>
+                <Grid item xs={10} md={8} lg={6}>
                     <InputSearch
                         handleInputChange={handleSearchQuery}
                         searchInputValue={searchInputValue}
@@ -47,15 +59,14 @@ const AllCharactersPage = (): JSX.Element => {
                         container
                         sx={{
                             display: "flex",
-                            justifyContent: "flex-start",
+                            justifyContent: "center",
                             flexWrap: "wrap",
                             margin: "0 auto 20px",
                         }}
                     >
                         {allCharacters?.map(({name, id, image, status}) => (
-                            <li
+                            <LiItem
                                 key={id}
-                                style={{paddingBottom: "30px", marginRight: "70px"}}
                             >
                                 <Link
                                     to={`/characters/${id}`}
@@ -68,7 +79,7 @@ const AllCharactersPage = (): JSX.Element => {
                                         height={+425}
                                     />
                                 </Link>
-                            </li>
+                            </LiItem>
                         ))}
                     </Grid>
                 </ul>

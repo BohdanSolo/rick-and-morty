@@ -1,9 +1,21 @@
 import React from "react";
-import {CardActions, Container, Grid, IconButton, Typography} from "@mui/material";
+import {CardActions, Container, Grid, IconButton, styled, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import CustomCard from "../../UI/CustomCard";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {useAppSelector} from "../../hooks/reduxHooks";
+
+
+const LiItem = styled('li')(({theme}) => ({
+    paddingBottom: "30px",
+    marginRight: "70px",
+    [theme.breakpoints.down('md')]: {
+        marginRight: "30px",
+    },
+    [theme.breakpoints.down('sm')]: {
+        marginRight: "0",
+    },
+}));
 
 const LikedPage = (): JSX.Element => {
     const favoriteCharactersList = useAppSelector((state) => state.favorite.favoriteCharacters);
@@ -15,13 +27,13 @@ const LikedPage = (): JSX.Element => {
                         container
                         sx={{
                             display: "flex",
-                            justifyContent: "flex-start",
+                            justifyContent: "center",
                             flexWrap: "wrap",
                             margin: "0 auto 20px",
                         }}
                     >
                         {favoriteCharactersList.length ? favoriteCharactersList?.map(({name, id, image, status}) => (
-                            <li key={id} style={{paddingBottom: "30px", marginRight: "70px"}}>
+                            <LiItem key={id}>
                                 <Link
                                     to={`/characters/${id}`}
                                     style={{textDecoration: "none"}}
@@ -42,7 +54,7 @@ const LikedPage = (): JSX.Element => {
                                         </CardActions>
                                     </CustomCard>
                                 </Link>
-                            </li>
+                            </LiItem>
                         )) : <Typography variant="h4" component="div" color="secondary" fontWeight="bold"
                                          textAlign="left">
                             There is no liked characters. <br/> You can click on like on the page of particular
