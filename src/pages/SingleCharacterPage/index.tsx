@@ -89,7 +89,7 @@ const SingleCharacterPage = (): JSX.Element => {
                             </CardActions>
                         </CustomCard>
                     </Grid>
-                    <CharacterInfo character={character}/>
+                    {character.name && <CharacterInfo character={character}/>}
                 </Grid>
             </Container>
         </>

@@ -80,7 +80,7 @@ const HomePage = (): JSX.Element => {
     return (
         <Box flexGrow={1}>
             <AppBar position="static" color="primary" sx={{marginBottom: "50px"}}>
-                <Container maxWidth="xl">
+                <Container maxWidth="xl" >
                     <Toolbar disableGutters>
                         <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                             <IconButton
@@ -129,7 +129,7 @@ const HomePage = (): JSX.Element => {
                             </Menu>
                         </Box>
                         <Link to={RouteNames.HOME_PAGE}>
-                            <Box sx={{display: {xs: 'none', sm: 'flex'}, flexGrow: 1, mr: 5}}>
+                            <Box sx={{display: {xs: 'none', sm: 'flex'}, flexGrow: 1}}>
                                 <img
                                     src={logo}
                                     alt="logo"
