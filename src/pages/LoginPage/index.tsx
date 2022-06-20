@@ -50,7 +50,7 @@ const LoginPage = (): JSX.Element => {
 
     const handleFacebookSignIn = useCallback(async () => {
         try {
-            await auth.signInWithPopup(GoogleProvider);
+            await auth.signInWithPopup(FbProvider);
             const user = auth.currentUser;
             if (user) {
                 setCurrentUser({
@@ -78,7 +78,7 @@ const LoginPage = (): JSX.Element => {
 
     const handleGoogleSignIn = useCallback(async () => {
         try {
-            await auth.signInWithPopup(FbProvider);
+            await auth.signInWithPopup(GoogleProvider);
             const user = auth.currentUser;
             if (user) {
                 setCurrentUser({

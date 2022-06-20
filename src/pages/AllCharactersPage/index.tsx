@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useAppSelector} from "../../hooks/reduxHooks";
 import AppPagination from "../../components/AppPagination";
 import {Link, useLocation} from "react-router-dom";
-import {Box, Container, Grid, styled} from "@mui/material";
+import {Container, Grid, styled} from "@mui/material";
 import CustomCard from "../../UI/CustomCard";
 import {useActions} from "../../hooks/useActions";
 import {ALL_CHARACTERS_URL} from "../../constants/charactersAPI";

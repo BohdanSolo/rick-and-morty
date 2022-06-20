@@ -7,6 +7,7 @@ const initialState: SingleCharacterTypes = {
         id: null,
         image: "",
         status: "",
+        species: "",
         gender: "",
         location: "",
         episode: [],

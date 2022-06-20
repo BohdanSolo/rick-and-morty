@@ -14,11 +14,7 @@ interface LoginFormTypes {
     handleGoogleSignIn: () => void;
 }
 
-const LoginForm = ({
-                       handleSignIn,
-                       handleFacebookSignIn,
-                       handleGoogleSignIn,
-                   }: LoginFormTypes): JSX.Element => {
+const LoginForm = ({ handleSignIn, handleFacebookSignIn, handleGoogleSignIn,}: LoginFormTypes): JSX.Element => {
     const initialValues = {
         email: "",
         password: "",
@@ -63,7 +59,7 @@ const LoginForm = ({
                         or
                     </Typography>
                     <Button
-                        onClick={handleFacebookSignIn}
+                        onClick={handleGoogleSignIn}
                         variant="text"
                         sx={{
                             color: "#57b742",

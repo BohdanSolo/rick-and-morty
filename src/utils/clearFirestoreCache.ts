@@ -1,6 +1,5 @@
 const clearFirestoreCache = () => {
     try {
-
         // @ts-ignore
         const map = globalThis['_reactFirePreloadedObservables'];
         Array.from(map.keys()).forEach(

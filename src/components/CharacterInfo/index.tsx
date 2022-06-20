@@ -41,8 +41,9 @@ const CharacterInfo = ({character}: CharacterInfoProps): JSX.Element => {
     const characterInfo: CharacterInfoTypes[] = [
         {characteristic: "Name", info: character.name},
         {characteristic: "Gender", info: character.gender},
-        {characteristic: "Created", info: character.created},
+        {characteristic: "Species", info: character.species},
         {characteristic: "Status", info: character.status},
+        {characteristic: "Created", info: character.created},
         {characteristic: "Location", info: character.location},
     ];
 

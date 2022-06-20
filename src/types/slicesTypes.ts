@@ -28,6 +28,7 @@ export interface CharacterTypesInfo {
     id: number | null;
     image: string;
     status: string;
+    species: string,
     gender: string;
     location: string;
     episode: string[];

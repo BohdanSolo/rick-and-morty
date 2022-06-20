@@ -15,6 +15,7 @@ export const singleCharacterAsyncThunk = createAsyncThunk(
                 id: data.id,
                 image: data.image,
                 status: data.status,
+                species: data.species,
                 gender: data.gender,
                 created: data.created,
                 location: data.location?.name,
