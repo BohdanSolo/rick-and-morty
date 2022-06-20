@@ -62,7 +62,7 @@ const LoginPage = (): JSX.Element => {
             setAlert({
                 show: true,
                 severity: "success",
-                message: "Signed in with Google",
+                message: "Signed in with Facebook",
             });
         } catch (e) {
             if (e instanceof Error) {
@@ -90,7 +90,7 @@ const LoginPage = (): JSX.Element => {
             setAlert({
                 show: true,
                 severity: "success",
-                message: "Signed in with Facebook",
+                message: "Signed in with Google",
             });
         } catch (e) {
             if (e instanceof Error) {
