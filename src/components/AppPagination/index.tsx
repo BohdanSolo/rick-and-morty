@@ -2,20 +2,18 @@ import React from "react";
 import {Pagination, PaginationItem, Grid} from "@mui/material";
 import Stack from "@mui/material/Stack";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../hooks/reduxHooks";
 
 interface AppPaginationProps {
     pageNumber: number,
     setPageNumber: (pageNumber: number) => void
     setSearchInputValue: (searchQuery: string) => void
+    pagesCount: number;
 }
 
-const AppPagination = ({pageNumber, setPageNumber, setSearchInputValue}: AppPaginationProps): JSX.Element => {
-    const pagesCount = useAppSelector((state) => state.allCharacters.info.pages);
+const AppPagination = ({pageNumber, setPageNumber, pagesCount, }: AppPaginationProps): JSX.Element => {
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
         setPageNumber(value);
-        setSearchInputValue(''); // Clear search input when user is clicking on pagination number
     };
 
 

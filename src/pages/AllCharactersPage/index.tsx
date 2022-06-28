@@ -12,6 +12,7 @@ import InputSearch from "../../components/InputSearch";
 const AllCharactersPage = (): JSX.Element => {
     const location = useLocation();
     const [pageNumber, setPageNumber] = useState<number>(parseInt(location.search?.split("=")[1]) ||1);
+    const pagesCount = useAppSelector((state) => state.allCharacters.info.pages);
     const [searchInputValue, setSearchInputValue] = useState<string>("");
     const allCharacters = useAppSelector((state) => state.allCharacters.characters);
     const {allCharactersAsyncThunk} = useActions();
@@ -29,7 +30,7 @@ const AllCharactersPage = (): JSX.Element => {
     };
 
 
-    const LiItem = styled('li')(({theme}) => ({
+    const ListItem = styled('li')(({theme}) => ({
         paddingBottom: "30px",
         marginRight: "70px",
         [theme.breakpoints.down('md')]: {
@@ -65,7 +66,7 @@ const AllCharactersPage = (): JSX.Element => {
                         }}
                     >
                         {allCharacters?.map(({name, id, image, status}) => (
-                            <LiItem
+                            <ListItem
                                 key={id}
                             >
                                 <Link
@@ -79,7 +80,7 @@ const AllCharactersPage = (): JSX.Element => {
                                         height={+425}
                                     />
                                 </Link>
-                            </LiItem>
+                            </ListItem>
                         ))}
                     </Grid>
                 </ul>
@@ -88,6 +89,7 @@ const AllCharactersPage = (): JSX.Element => {
                     pageNumber={pageNumber}
                     setPageNumber={setPageNumber}
                     setSearchInputValue={setSearchInputValue}
+                    pagesCount={pagesCount}
                 />
             </Grid>
         </Container>

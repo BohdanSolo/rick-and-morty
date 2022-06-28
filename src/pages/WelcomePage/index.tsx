@@ -1,8 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Typography, Box, styled} from "@mui/material";
-import {useActions} from "../../hooks/useActions";
-import {ALL_CHARACTERS_URL} from "../../constants/charactersAPI";
-
 
 const Wrapper = styled(Box)(({theme}) => ({
     height: window.innerHeight - 100,
@@ -15,11 +12,6 @@ const Wrapper = styled(Box)(({theme}) => ({
 }));
 
 const WelcomePage = (): JSX.Element => {
-    const {infoApiAsyncThunk} = useActions()
-
-    useEffect(() => {
-        infoApiAsyncThunk(`${ALL_CHARACTERS_URL}/?page=${1}`);
-    }, [])
 
     return (
         <Wrapper>

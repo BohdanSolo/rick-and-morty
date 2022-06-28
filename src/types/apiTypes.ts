@@ -26,7 +26,8 @@ export interface InfoTypes {
     "prev": string | null,
 }
 
-export interface ResponseTypes {
+export interface ResponseCharactersTypes {
     info: InfoTypes,
     results: CharacterTypes[]
 }
+

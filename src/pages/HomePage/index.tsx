@@ -7,7 +7,7 @@ import {
     MenuItem,
     Box,
     AppBar,
-    Badge, styled
+    Badge,
 } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuIcon from '@mui/icons-material/Menu';

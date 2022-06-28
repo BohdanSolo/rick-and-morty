@@ -31,7 +31,7 @@ npm run build            # builds the app for production
 - Other packages: axios, yup etc;
 
 ## Application features:
-- Registration logic;
+- Registration logic (there is no email verification, so you can use fake credentials);
 - Login logic;
 - Facebook login (log in via Facebook works only with HTTPS localhost, or you can  check this feature using a deployed project);
 - Verification of login and password during filling out the form;

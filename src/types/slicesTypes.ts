@@ -39,3 +39,4 @@ export interface CharacterTypesInfo {
 export interface FavoriteTypes {
     favoriteCharacters: CharactersProps[];
 }
+

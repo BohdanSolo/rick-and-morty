@@ -64,7 +64,7 @@ const CharacterInfo = ({character}: CharacterInfoProps): JSX.Element => {
                 Episodes —
             </Typography>
             {episodes?.map((episode) => (
-                <Typography variant="h5" component="span">
+                <Typography key={episode.name} variant="h5" component="span">
                     {episode.name} ({episode.episode}); —
                 </Typography>
             ))}

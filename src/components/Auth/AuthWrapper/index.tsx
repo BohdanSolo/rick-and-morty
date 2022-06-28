@@ -54,11 +54,11 @@ const InfoGrid = styled(Grid)(({theme}) => ({
 }));
 
 const AuthWrapper = ({
-                         text,
-                         question,
-                         route,
-                         children,
-                     }: AuthWrapperTypes): JSX.Element => {
+text,
+question,
+route,
+children,
+}: AuthWrapperTypes): JSX.Element => {
     return (
         <Root>
             <Container fixed maxWidth="lg">

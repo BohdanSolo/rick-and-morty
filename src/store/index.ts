@@ -8,7 +8,7 @@ export const rootReducer = combineReducers({
     currentUser,
     allCharacters: allCharactersSlice,
     singleCharacter: singleCharacterSlice,
-    favorite: favoriteSlice
+    favorite: favoriteSlice,
 });
 
 export const store = configureStore({reducer: rootReducer});
