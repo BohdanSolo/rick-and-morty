@@ -40,3 +40,26 @@ export interface FavoriteTypes {
     favoriteCharacters: CharactersProps[];
 }
 
+export interface LocationsTypes {
+        id: number,
+        name: string,
+        type: string,
+        dimension: string,
+}
+
+export interface LocationsSliceTypes {
+    locations: LocationsTypes[]
+    locationsInfo: {
+        pages: number,
+        notFoundError: boolean,
+
+    }
+}
+
+export interface SingleLocationTypes {
+    name: string,
+    type: string
+    dimension: string,
+    created: string,
+    residents: string[],
+}

@@ -1,15 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { CurrentUserSliceTypes } from "../../types/slicesTypes";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { CurrentUserSliceTypes } from '../../types/slicesTypes';
 
 
 const initialState: CurrentUserSliceTypes =  {
-      name: "",
-      email: "",
-      img: "",
-    };
+  name: '',
+  email: '',
+  img: '',
+};
 
 const currentUserSlice = createSlice({
-  name: "currentUserSlice ",
+  name: 'currentUserSlice ',
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
@@ -18,10 +19,10 @@ const currentUserSlice = createSlice({
       state.img = action.payload.img;
     },
     removeUser: (state) => {
-      state.name = "";
-      state.email = "";
+      state.name = '';
+      state.email = '';
       if (state.img) {
-        state.img = "";
+        state.img = '';
       }
     },
   },

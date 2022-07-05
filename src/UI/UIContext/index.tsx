@@ -16,26 +16,26 @@ interface AlertProps {
 }
 
 export const UIContextProvider: React.FC<any> = ({children}) => {
-    const [alert, setAlert] = useState<AlertProps>({
-        show: false,
-        severity: 'info',
-        message: '',
+  const [alert, setAlert] = useState<AlertProps>({
+    show: false,
+    severity: 'info',
+    message: '',
+  });
+  const handleClose = () =>
+    setAlert({
+      show: false,
     });
-    const handleClose = () =>
-        setAlert({
-            show: false,
-        });
 
-    return (
-        <UIContext.Provider
-            value={{setAlert, alert,}}
-        >
-            {children}
-            <Snackbar open={alert.show} autoHideDuration={4000} onClose={handleClose}>
-                <MuiAlert elevation={6} variant="filled" severity={alert.severity}>
-                    {alert.message}
-                </MuiAlert>
-            </Snackbar>
-        </UIContext.Provider>
-    );
+  return (
+    <UIContext.Provider
+      value={{setAlert, alert}}
+    >
+      {children}
+      <Snackbar open={alert.show} autoHideDuration={4000} onClose={handleClose}>
+        <MuiAlert elevation={6} variant='filled' severity={alert.severity}>
+          {alert.message}
+        </MuiAlert>
+      </Snackbar>
+    </UIContext.Provider>
+  );
 };

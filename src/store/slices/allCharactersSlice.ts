@@ -1,23 +1,24 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SetCharactersSliceTypes } from "../../types/slicesTypes";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { SetCharactersSliceTypes } from '../../types/slicesTypes';
 
 const initialState: SetCharactersSliceTypes = {
   characters: [
     {
-      name: "",
-      image: "",
-      status: "",
+      name: '',
+      image: '',
+      status: '',
       id: null,
     },
   ],
   info: {
     pages: 0,
-    notFoundError: false
+    notFoundError: false,
   },
 };
 
 const allCharactersSlice = createSlice({
-  name: "setCharactersSlice",
+  name: 'setCharactersSlice',
   initialState,
   reducers: {
     setCharacters: (state, action) => {
@@ -27,8 +28,8 @@ const allCharactersSlice = createSlice({
       state.info = action.payload;
     },
     setNotFoundError: (state,action: PayloadAction<boolean>) => {
-      state.info.notFoundError = action.payload
-    }
+      state.info.notFoundError = action.payload;
+    },
   },
 });
 

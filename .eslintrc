@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "react-app",
+    "react-app/jest"
+  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "no-console": "warn",
+    "quotes": ["error", "single"],
+    "max-len": ["error", {
+      "code": 140
+    }],
+    "indent": ["warn", 2],
+    "comma-dangle": ["warn", "always-multiline"],
+    "semi": ["warn", "always"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "import/order": ["error", {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type" ],
+      "newlines-between": "always-and-inside-groups"
+    }]
+  }
+}
